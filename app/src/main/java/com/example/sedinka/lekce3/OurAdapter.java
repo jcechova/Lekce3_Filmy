@@ -12,26 +12,30 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class OurAdapter extends ArrayAdapter {
-    private final ArrayList<Animal> animals;
+    private final ArrayList<Movie> movies;
     private final Activity activity;
 
-    public OurAdapter(Activity activity, ArrayList<Animal> animals) {
-        super(activity, R.layout.list_item, animals);
+    public OurAdapter(Activity activity, ArrayList<Movie> movies) {
+        super(activity, R.layout.list_item, movies);
         this.activity = activity;
-        this.animals = animals;
+        this.movies = movies;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = activity.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.list_item, null, true);
-        //získáme si refernece na views v xml
+
         TextView title = rowView.findViewById(R.id.title);
-        TextView info = rowView.findViewById(R.id.info);
+        TextView perc = rowView.findViewById(R.id.perc);
+        TextView country= rowView.findViewById(R.id.country);
+        TextView year = rowView.findViewById(R.id.year);
         ImageView image = rowView.findViewById(R.id.image);
-        //nastavíme do nich data z listu
-        title.setText(animals.get(position).name);
-        info.setText(animals.get(position).info);
-        image.setImageResource(animals.get(position).image);
+
+        title.setText(movies.get(position).title);
+        perc.setText(movies.get(position).perc);
+        country.setText(movies.get(position).country);
+        year.setText(movies.get(position).year);
+        image.setImageResource(movies.get(position).image);
 
         return rowView;
     }
