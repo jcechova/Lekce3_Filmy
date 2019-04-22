@@ -1,7 +1,6 @@
 package com.example.sedinka.lekce3;
 
 import android.app.Activity;
-import android.support.v4.widget.ImageViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class OurAdapter extends ArrayAdapter {
+
     private final ArrayList<Movie> movies;
     private final Activity activity;
 
@@ -30,12 +32,14 @@ public class OurAdapter extends ArrayAdapter {
         TextView country= rowView.findViewById(R.id.country);
         TextView year = rowView.findViewById(R.id.year);
         ImageView image = rowView.findViewById(R.id.image);
+        Glide.with(activity).load(movies.get(position).image).into(image);
 
         title.setText(movies.get(position).title);
         perc.setText(movies.get(position).perc);
         country.setText(movies.get(position).country);
         year.setText(movies.get(position).year);
-        image.setImageResource(movies.get(position).image);
+   //     image.setImageResource(movies.get(position).image);
+
 
         return rowView;
     }
